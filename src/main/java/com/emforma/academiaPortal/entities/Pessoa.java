@@ -1,9 +1,15 @@
 package com.emforma.academiaPortal.entities;
 
+import java.io.Serializable;
 import java.sql.Date;
 
- public abstract class Pessoa {
 
+
+
+ public abstract class Pessoa implements Serializable {
+
+	
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String sexo;
 	private String estadoCivil;
