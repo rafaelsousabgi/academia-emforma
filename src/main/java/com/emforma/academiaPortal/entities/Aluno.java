@@ -1,12 +1,15 @@
 package com.emforma.academiaPortal.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +25,8 @@ public class Aluno extends Pessoa implements Serializable {
 	private Long id;
 	private String objetivo;
 	
+	@OneToMany(mappedBy = "aluno")
+	private List<AvaliacaoFisica> avaliacao = new ArrayList<>();
 	
 		
 	
@@ -54,6 +59,11 @@ public class Aluno extends Pessoa implements Serializable {
 		this.objetivo = objetivo;
 	}
 	
+	public List<AvaliacaoFisica> getAvaliacao() {
+		return avaliacao;
+	}
+	
+	
 	
 	
 	@Override
@@ -71,6 +81,7 @@ public class Aluno extends Pessoa implements Serializable {
 		Aluno other = (Aluno) obj;
 		return Objects.equals(id, other.id);
 	}
+
 	
 
 
