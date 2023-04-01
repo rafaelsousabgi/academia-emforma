@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,7 @@ public class Aluno extends Pessoa implements Serializable {
 	private Long id;
 	private String objetivo;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "aluno")
 	private List<AvaliacaoFisica> avaliacao = new ArrayList<>();
 	

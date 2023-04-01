@@ -1,10 +1,13 @@
 package com.emforma.academiaPortal.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.xml.crypto.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -24,10 +27,12 @@ public class AvaliacaoFisica implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	
+	
 	private Date dataAvaliacao;
 	private Double peso;
 	private Double altura;
@@ -57,7 +62,7 @@ public class AvaliacaoFisica implements Serializable {
 
 	
 
-	public AvaliacaoFisica(Long id, Date dataAvaliacao, Double peso, Double altura, Double peito, Double cintura,
+	public AvaliacaoFisica(Long id,Date dataAvaliacao, Double peso, Double altura, Double peito, Double cintura,
 			Double panturrilhaDireita, Double panturrilhaEsquerda, Double coxaDireita, Double coxaEsqueda,
 			Double bracoEsquedo, Double bracoDireito, Double antebracoEsquedo, Double antebracoDireito, Double gluteo,
 			Double imc, Aluno aluno) {
@@ -90,17 +95,6 @@ public class AvaliacaoFisica implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Date getDataAvaliacao() {
-		return dataAvaliacao;
-	}
-
-
-
-	public void setDataAvaliacao(Date dataAvaliacao) {
-		this.dataAvaliacao = dataAvaliacao;
-	}
-
 
 
 	public Double getPeso() {
@@ -222,6 +216,19 @@ public class AvaliacaoFisica implements Serializable {
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
+	
+
+	public Date getDataAvaliacao() {
+		return dataAvaliacao;
+	}
+
+
+
+	public void setDataAvaliacao(Date dataAvaliacao) {
+		this.dataAvaliacao = dataAvaliacao;
+	}
+	
+	
 
 	@Override
 	public int hashCode() {
@@ -239,8 +246,11 @@ public class AvaliacaoFisica implements Serializable {
 		AvaliacaoFisica other = (AvaliacaoFisica) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
+
+
+
+
 	
 
 }

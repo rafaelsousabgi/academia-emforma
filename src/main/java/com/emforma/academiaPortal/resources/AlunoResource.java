@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emforma.academiaPortal.entities.Aluno;
-import com.emforma.academiaPortal.entities.Instrutor;
-import com.emforma.academiaPortal.entities.Pessoa;
 import com.emforma.academiaPortal.services.AlunoService;
 
 @RestController
