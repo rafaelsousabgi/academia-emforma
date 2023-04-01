@@ -3,25 +3,36 @@ package com.emforma.academiaPortal.entities;
 import java.io.Serializable;
 import java.sql.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
 
 
 
- public abstract class Pessoa implements Serializable {
-
-	
-	private static final long serialVersionUID = 1L;
-	private String nome;
-	private String sexo;
-	private String estadoCivil;
-	private String rg;
-	private String cpf;
-	private String email;
-	private String telefone;
-	private String cidade;
-	private String bairro;
-	private String uf;
-	private String cep;
-	private String profissao;
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+ public abstract class Pessoa  implements Serializable {
+		
+		private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	protected  String nome;
+	protected  String sexo;
+	protected  String estadoCivil;
+	protected  String rg;
+	protected  String cpf;
+	protected  String email;
+	protected  String telefone;
+	protected  String cidade;
+	protected  String bairro;
+	protected  String uf;
+	protected  String cep;
+	protected  String profissao;
 	//private Date dataNascimento;
 	
 	

@@ -21,12 +21,15 @@ public class TestConfig implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		Aluno a2 = new Aluno("teste","teste","teste","teste","teste","teste","teste","teste","teste","teste","teste","teste");
-		a2.setId(null);
-		a2.setObjetivo("ficar grande");
+		Aluno a2 = new Aluno(1L,"ficar grande","teste","teste","teste","teste","teste","teste","teste","teste","teste","teste","teste","teste");
+		Aluno a3 = new Aluno(null,"ficar grande","teste","teste","teste","teste","teste","teste","teste","teste","teste","teste","teste","teste");
+		
+		
+		//a2.setId(null);
+		//a2.setObjetivo("ficar grande");
 		
 		alunoRepository.saveAll(Arrays.asList(a2));
-		
+		alunoRepository.saveAll(Arrays.asList(a3));
 	}
 	
 	
