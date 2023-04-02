@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.emforma.academiaPortal.entities.enums.TipoFisico;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -31,17 +32,18 @@ public class Aluno extends Pessoa implements Serializable {
 	@OneToMany(mappedBy = "aluno")
 	private List<AvaliacaoFisica> avaliacao = new ArrayList<>();
 	
-		
+	private Integer tipofisico;	
 	
 	public Aluno() {
 		
 	}
 
-	public Aluno(Long id, String objetivo,String nome, String sexo, String estadoCivil, String rg, String cpf, String email, String telefone,
+	public Aluno(Long id, String objetivo,TipoFisico tipofisico,String nome, String sexo, String estadoCivil, String rg, String cpf, String email, String telefone,
 			String cidade, String bairro, String uf, String cep, String profissao) {
 		super(nome, sexo, estadoCivil, rg, cpf, email, telefone, cidade, bairro, uf, cep, profissao);
 		this.id = id;
 		this.objetivo = objetivo;
+		setTipofisico(tipofisico);
 		
 	}
 	
@@ -62,6 +64,16 @@ public class Aluno extends Pessoa implements Serializable {
 		this.objetivo = objetivo;
 	}
 	
+	public TipoFisico getTipofisico() {
+		return TipoFisico.valueOf(tipofisico);
+	}
+
+	public void setTipofisico(TipoFisico tipofisico) {
+		if(tipofisico !=null) {
+		this.tipofisico = tipofisico.getCode();
+		}
+	}
+
 	public List<AvaliacaoFisica> getAvaliacao() {
 		return avaliacao;
 	}
