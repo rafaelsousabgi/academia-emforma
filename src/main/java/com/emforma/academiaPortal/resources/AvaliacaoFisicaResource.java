@@ -13,7 +13,7 @@ import com.emforma.academiaPortal.entities.AvaliacaoFisica;
 import com.emforma.academiaPortal.services.AvaliacaoFisicaService;
 
 @RestController
-@RequestMapping(value = "/avaliacaoFisicas")
+@RequestMapping(value = "/avaliacaofisicas")
 public class AvaliacaoFisicaResource {
 	
 	@Autowired

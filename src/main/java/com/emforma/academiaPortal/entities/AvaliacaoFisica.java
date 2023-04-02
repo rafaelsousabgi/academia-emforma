@@ -1,15 +1,10 @@
 package com.emforma.academiaPortal.entities;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -53,19 +48,22 @@ public class AvaliacaoFisica implements Serializable {
 	@JoinColumn(name ="aluno_id")
 	private Aluno aluno;
 
+	
+	@ManyToOne
+	@JoinColumn(name="instrutor_id")
+	private Instrutor instrutor;
+	
 
-	
-	
 	public AvaliacaoFisica() {
-		
+		super();
 	}
 
-	
+
 
 	public AvaliacaoFisica(Long id,Date dataAvaliacao, Double peso, Double altura, Double peito, Double cintura,
 			Double panturrilhaDireita, Double panturrilhaEsquerda, Double coxaDireita, Double coxaEsqueda,
 			Double bracoEsquedo, Double bracoDireito, Double antebracoEsquedo, Double antebracoDireito, Double gluteo,
-			Double imc, Aluno aluno) {
+			Double imc, Aluno aluno, Instrutor instrutor) {
 		super();
 		this.id = id;
 		this.dataAvaliacao = dataAvaliacao;
@@ -84,6 +82,7 @@ public class AvaliacaoFisica implements Serializable {
 		this.gluteo = gluteo;
 		this.imc = imc;
 		this.aluno = aluno;
+		this.instrutor= instrutor;
 	}
 
 
@@ -229,6 +228,19 @@ public class AvaliacaoFisica implements Serializable {
 	}
 	
 	
+	
+
+	public Instrutor getInstrutor() {
+		return instrutor;
+	}
+
+
+
+	public void setInstrutor(Instrutor instrutor) {
+		this.instrutor = instrutor;
+	}
+
+
 
 	@Override
 	public int hashCode() {
