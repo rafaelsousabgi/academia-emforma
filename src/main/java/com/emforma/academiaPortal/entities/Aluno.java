@@ -27,12 +27,15 @@ public class Aluno extends Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String objetivo;
+	private Integer tipofisico;	
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "aluno")
 	private List<AvaliacaoFisica> avaliacao = new ArrayList<>();
 	
-	private Integer tipofisico;	
+	@OneToMany(mappedBy = "aluno")
+	private List<FichaTreino> fichaTreino = new ArrayList<>();
+	
+	
 	
 	public Aluno() {
 		
@@ -79,8 +82,10 @@ public class Aluno extends Pessoa implements Serializable {
 	}
 	
 	
-	
-	
+	public List<FichaTreino> getFichaTreino() {
+		return fichaTreino;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

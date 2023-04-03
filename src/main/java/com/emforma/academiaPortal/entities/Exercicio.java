@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -31,6 +33,12 @@ public class Exercicio implements Serializable{
 	@JsonIgnore
 	@ManyToMany(mappedBy = "exercicios")
 	private Set<FichaTreino> fichaTreinos = new HashSet<>();
+	
+	@ManyToMany
+	@JoinTable(name = "TB_EXERCICIOS_GRUPOMUSCULAR",
+			joinColumns = @JoinColumn(name="EXERCICIO_ID"),
+			inverseJoinColumns = @JoinColumn(name="GRUPOMUSCULAR_ID"))
+	private Set<GrupoMuscular> grupoMuscular = new HashSet<>();
 	
 	public Exercicio() {
 		
@@ -71,6 +79,9 @@ public class Exercicio implements Serializable{
 		return fichaTreinos;
 	}
 	
+	public Set<GrupoMuscular> getGrupoMuscular() {
+		return grupoMuscular;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

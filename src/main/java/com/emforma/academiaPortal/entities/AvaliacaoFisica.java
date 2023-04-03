@@ -1,7 +1,9 @@
 package com.emforma.academiaPortal.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -44,6 +47,7 @@ public class AvaliacaoFisica implements Serializable {
 	private Double gluteo;
 	private Double imc;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name ="aluno_id")
 	private Aluno aluno;
@@ -53,11 +57,17 @@ public class AvaliacaoFisica implements Serializable {
 	@JoinColumn(name="instrutor_id")
 	private Instrutor instrutor;
 	
+	
+	@OneToMany(mappedBy = "avaliacao")
+	private List <FichaTreino> fichaTreino  = new ArrayList<>();;
 
 	public AvaliacaoFisica() {
 		super();
 	}
 
+
+
+	
 
 
 	public AvaliacaoFisica(Long id,Date dataAvaliacao, Double peso, Double altura, Double peito, Double cintura,
@@ -221,24 +231,22 @@ public class AvaliacaoFisica implements Serializable {
 		return dataAvaliacao;
 	}
 
-
-
 	public void setDataAvaliacao(Date dataAvaliacao) {
 		this.dataAvaliacao = dataAvaliacao;
 	}
 	
-	
-	
-
 	public Instrutor getInstrutor() {
 		return instrutor;
 	}
 
-
-
 	public void setInstrutor(Instrutor instrutor) {
 		this.instrutor = instrutor;
 	}
+	
+	public List<FichaTreino> getFichaTreino() {
+		return fichaTreino;
+	}
+
 
 
 

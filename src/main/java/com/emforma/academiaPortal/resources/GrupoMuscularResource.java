@@ -13,7 +13,7 @@ import com.emforma.academiaPortal.entities.GrupoMuscular;
 import com.emforma.academiaPortal.services.GrupoMuscularService;
 
 @RestController
-@RequestMapping(value = "/grupoMusculars")
+@RequestMapping(value = "/gruposMusculares")
 public class GrupoMuscularResource {
 	
 	@Autowired
