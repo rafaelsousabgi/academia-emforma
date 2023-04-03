@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +27,10 @@ public class FichaTreino implements Serializable {
 	private String nome;
 	private String descricao;
 	
+	@ManyToMany
+	@JoinTable(name = "TB_TREINO_EXERCICIOS",
+	joinColumns = @JoinColumn(name="FICHATREINO_ID"),
+	inverseJoinColumns = @JoinColumn(name="EXERCICIO_ID"))
 	private Set<Exercicio> exercicios = new HashSet<>();
 	
 	public FichaTreino() {
