@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.emforma.academiaPortal.entities.Aluno;
 import com.emforma.academiaPortal.repositories.AlunoRepository;
+import com.emforma.academiaPortal.services.exceptions.DatabaseException;
 import com.emforma.academiaPortal.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -31,7 +34,13 @@ public class AlunoService {
 	}
 	
 	public void delete(Long id) {
+		try {
 		alunoRepository.deleteById(id);
+		}catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id) ;
+		}catch(DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
 	}
 	
 	public Aluno update(Long id, Aluno obj) {

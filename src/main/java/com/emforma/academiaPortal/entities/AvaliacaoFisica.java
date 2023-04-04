@@ -211,7 +211,7 @@ public class AvaliacaoFisica implements Serializable {
 	}
 
 	public Double getImc() {
-		return imc;
+		return imc = peso /(altura * altura);
 	}
 
 	public void setImc(Double imc) {
@@ -246,6 +246,8 @@ public class AvaliacaoFisica implements Serializable {
 	public List<FichaTreino> getFichaTreino() {
 		return fichaTreino;
 	}
+	
+	
 
 
 
