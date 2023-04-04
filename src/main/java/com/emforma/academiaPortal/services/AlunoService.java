@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.emforma.academiaPortal.entities.Aluno;
 import com.emforma.academiaPortal.repositories.AlunoRepository;
+import com.emforma.academiaPortal.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class AlunoService {
@@ -21,7 +22,8 @@ public class AlunoService {
 	
 	public Aluno findById(Long id) {
 		Optional<Aluno>obj = alunoRepository.findById(id);
-		return obj.get();
+		
+		return obj.orElseThrow(()-> new ResourceNotFoundException(id));
 	}
 	
 	public Aluno insert(Aluno obj) {
