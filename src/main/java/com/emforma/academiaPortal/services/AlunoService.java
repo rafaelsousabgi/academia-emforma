@@ -23,6 +23,10 @@ public class AlunoService {
 		Optional<Aluno>obj = alunoRepository.findById(id);
 		return obj.get();
 	}
+	
+	public Aluno insert(Aluno obj) {
+		return alunoRepository.save(obj);
+	}
 
 	//public Aluno alunoFindById(Long id) {
 		//return alunoRepository.findById(id).get();

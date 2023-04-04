@@ -13,16 +13,21 @@ import com.emforma.academiaPortal.repositories.AvaliacaoFisicaRepository;
 public class AvaliacaoFisicaService {
 	
 	@Autowired
-	private AvaliacaoFisicaRepository AvaliacaoFisicaRepository;
+	private AvaliacaoFisicaRepository avaliacaoFisicaRepository;
 	
 	public List<AvaliacaoFisica> findAll(){
-		return AvaliacaoFisicaRepository.findAll();
+		return avaliacaoFisicaRepository.findAll();
 	}
 	
 	public AvaliacaoFisica findById(Long id) {
-		Optional<AvaliacaoFisica>obj = AvaliacaoFisicaRepository.findById(id);
+		Optional<AvaliacaoFisica>obj = avaliacaoFisicaRepository.findById(id);
 		return obj.get();
 	}
+	
+	public AvaliacaoFisica insert(AvaliacaoFisica obj) {
+		return avaliacaoFisicaRepository.save(obj);
+	}
+
 
 	//public AvaliacaoFisica AvaliacaoFisicaFindById(Long id) {
 		//return AvaliacaoFisicaRepository.findById(id).get();

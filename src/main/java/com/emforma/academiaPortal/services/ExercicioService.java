@@ -23,6 +23,11 @@ public class ExercicioService {
 		Optional<Exercicio>obj = exercicioRepository.findById(id);
 		return obj.get();
 	}
+	
+	public Exercicio insert(Exercicio obj) {
+		return exercicioRepository.save(obj);
+	}
+
 
 	//public Exercicio ExercicioFindById(Long id) {
 		//return ExercicioRepository.findById(id).get();

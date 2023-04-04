@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import com.emforma.academiaPortal.entities.enums.TipoFisico;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

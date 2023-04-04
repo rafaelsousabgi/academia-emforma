@@ -23,6 +23,11 @@ public class FichaTreinoService {
 		Optional<FichaTreino>obj = fichaTreinoRepository.findById(id);
 		return obj.get();
 	}
+	
+	public FichaTreino insert(FichaTreino obj) {
+		return fichaTreinoRepository.save(obj);
+	}
+
 
 	//public FichaTreino FichaTreinoFindById(Long id) {
 		//return FichaTreinoRepository.findById(id).get();

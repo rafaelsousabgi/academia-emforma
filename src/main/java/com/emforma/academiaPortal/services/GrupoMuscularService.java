@@ -23,6 +23,10 @@ public class GrupoMuscularService {
 		Optional<GrupoMuscular>obj = grupoMuscularRepository.findById(id);
 		return obj.get();
 	}
+	public GrupoMuscular insert(GrupoMuscular obj) {
+		return grupoMuscularRepository.save(obj);
+	}
+
 
 	//public GrupoMuscular grupoMuscularFindById(Long id) {
 		//return grupoMuscularRepository.findById(id).get();

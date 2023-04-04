@@ -13,16 +13,21 @@ import com.emforma.academiaPortal.repositories.InstrutorRepository;
 public class InstrutorService {
 	
 	@Autowired
-	private InstrutorRepository alunoRepository;
+	private InstrutorRepository instrutorRepository;
 	
 	public List<Instrutor> findAll(){
-		return alunoRepository.findAll();
+		return instrutorRepository.findAll();
 	}
 	
 	public Instrutor findById(Long id) {
-		Optional<Instrutor>obj = alunoRepository.findById(id);
+		Optional<Instrutor>obj = instrutorRepository.findById(id);
 		return obj.get();
 	}
+	
+	public Instrutor insert(Instrutor obj) {
+		return instrutorRepository.save(obj);
+	}
+
 
 	//public Instrutor alunoFindById(Long id) {
 		//return alunoRepository.findById(id).get();
