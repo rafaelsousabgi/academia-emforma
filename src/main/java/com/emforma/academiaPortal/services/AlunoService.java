@@ -27,6 +27,25 @@ public class AlunoService {
 	public Aluno insert(Aluno obj) {
 		return alunoRepository.save(obj);
 	}
+	
+	public void delete(Long id) {
+		alunoRepository.deleteById(id);
+	}
+	
+	public Aluno update(Long id, Aluno obj) {
+		Aluno entity = alunoRepository.getReferenceById(id);
+		updateData(entity, obj);
+		return alunoRepository.save(entity);
+	}
+
+	private void updateData(Aluno entity, Aluno obj) {
+		entity.setNome(obj.getNome());
+		entity.setEmail(obj.getEmail());
+		entity.setTelefone(obj.getTelefone());
+		entity.setUf(obj.getUf());
+		entity.setCidade(obj.getCidade());
+		entity.setBairro(obj.getBairro());
+	}
 
 	//public Aluno alunoFindById(Long id) {
 		//return alunoRepository.findById(id).get();
