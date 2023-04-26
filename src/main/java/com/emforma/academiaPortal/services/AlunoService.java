@@ -13,6 +13,8 @@ import com.emforma.academiaPortal.repositories.AlunoRepository;
 import com.emforma.academiaPortal.services.exceptions.DatabaseException;
 import com.emforma.academiaPortal.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class AlunoService {
 	
@@ -44,9 +46,13 @@ public class AlunoService {
 	}
 	
 	public Aluno update(Long id, Aluno obj) {
+		try {
 		Aluno entity = alunoRepository.getReferenceById(id);
 		updateData(entity, obj);
 		return alunoRepository.save(entity);
+		}catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(Aluno entity, Aluno obj) {

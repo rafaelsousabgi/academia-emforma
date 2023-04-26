@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,22 +19,33 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.emforma.academiaPortal.entities.Aluno;
 import com.emforma.academiaPortal.services.AlunoService;
 
-@RestController
-@RequestMapping(value = "/alunos")
+@Controller
+@RequestMapping("/alunos")
 public class AlunoResource {
+	
 	
 	@Autowired
 	private AlunoService alunoService;
+	
+	@GetMapping("/cadastrar")
+	public String Cadastrar() {
+		return "/aluno/cadastro";
+	}
+	
+	@GetMapping("/listar")
+	public String listar() {
+		return "/aluno/lista";
+	}
 
 	//Metodo para buscar um aluno no banco
-	@GetMapping
+	@GetMapping()
 	public ResponseEntity<List<Aluno>> findAll(){
 		List<Aluno> list= alunoService.findAll();	
 		return ResponseEntity.ok().body(list);		
 	}
 	
 	//metodo para buscar um aluno por id
-	@GetMapping(value = "/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Aluno> findById(@PathVariable Long id){
 		Aluno obj = alunoService.findById(id);
 		return ResponseEntity.ok().body(obj);
@@ -41,7 +53,7 @@ public class AlunoResource {
 	
 	//inserir um objeto do tipo aluno no banco
 	
-	@PostMapping
+	@PostMapping("/salvar")
 	public ResponseEntity<Aluno> insert(@RequestBody Aluno obj){
 	  obj =	alunoService.insert(obj);
 	  URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -49,14 +61,14 @@ public class AlunoResource {
 	  return ResponseEntity.created(uri).body(obj);
 	}
 	
-	@DeleteMapping(value="/{id}")
+	@DeleteMapping("/excluir/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		
 		   alunoService.delete(id);
 		   return ResponseEntity.noContent().build();
 	}
 	
-	@PutMapping(value="/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno obj){
 		   
 		   obj= alunoService.update(id, obj);
